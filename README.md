@@ -1,2 +1,2 @@
 # PSChip8
-Chip-8 Emulator/Interpreter written in PowerShell
+In-progress Chip-8 Emulator/Interpreter written in PowerShell
