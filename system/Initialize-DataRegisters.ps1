@@ -21,5 +21,4 @@ function Initialize-DataRegisters {
     }
 
     return $dataRegisterArray
-
 }

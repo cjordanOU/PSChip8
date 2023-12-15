@@ -1,23 +1,42 @@
 #############################################################################################################################
 ## Includes
-#Add-Type -AssemblyName System.Drawing
-
+Add-Type -AssemblyName System.Windows.Forms
 
 #############################################################################################################################
 ## Import functions
 
-# Initializes system memory
+# Memory
 . "$($PSScriptRoot)\system\Initialize-Memory.ps1"
 
-# Initializes system data registers
+# Data Registers
 . "$($PSScriptRoot)\system\Initialize-DataRegisters.ps1"
 
+# Display
+. "$($PSScriptRoot)\system\Initialize-Display.ps1"
 
+# Timer
+. "$($PSScriptRoot)\system\Initialize-SystemTimer.ps1"
 
 #############################################################################################################################
 ## Main Logic
 
-$memoryArray = Initialize-Memory
+# Initialize Memory
+[Array] $memoryArray = Initialize-Memory
 
-$dataRegisterArray = Initialize-DataRegisters -Debug
+# Initialize Registers
+[Array] $dataRegisterArray = Initialize-DataRegisters
+$indexRegister = New-Object System.UInt16
 
+# Initialize Display
+[Array] $display = Initialize-Display -height 128
+#$display[0].ShowDialog()
+
+# Initialize Timers
+[Int16] $delayTimer = Initialize-SystemTimer
+[Int16] $soundTimer = Initialize-SystemTimer -soundTimerMode
+
+# Initialize Stack
+$stack = New-Object System.Collections.Stack
+
+Measure-Command { Initialize-SystemTimer -soundTimerMode }
+Measure-Command { Initialize-SystemTimer }
